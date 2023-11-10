@@ -7,13 +7,13 @@ import { ValidateObjectId } from '../shared/pipes/validate-object-id.pipes';
 export class ContactController {
     constructor(private contactService: ContactService) { }
 
-    @Get('contacts')
+    @Get('/')
     async getContacts(@Res() res) {
         const contacts = await this.contactService.getContacts();
         return res.status(HttpStatus.OK).json(contacts);
     }
 
-    @Get('contact/:contactId')
+    @Get('/:contactId')
     async getContact(@Res() res, @Param('contactId', new ValidateObjectId()) contactId) {
         const contact = await this.contactService.getContact(contactId);
         if (!contact) throw new NotFoundException('Contact does not exist!');
@@ -21,7 +21,7 @@ export class ContactController {
 
     }
 
-    @Post('/contact')
+    @Post('/')
     async addContact(@Res() res, @Body() createContactDTO: CreateContactDTO) {
         const newContact = await this.contactService.addContact(createContactDTO);
         return res.status(HttpStatus.OK).json({
