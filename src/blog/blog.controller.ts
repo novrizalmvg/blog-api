@@ -13,14 +13,14 @@ export class BlogController {
         return res.status(HttpStatus.OK).json(posts);
     }
 
-    @Get('post/:postID')
+    @Get('post/:postId')
     async getPost(@Res() res, @Param('postId', new ValidateObjectId()) postId) {
         const post = await this.blogService.getPost(postId);
         if (!post) throw new NotFoundException('Post does not exist!');
         return res.status(HttpStatus.OK).json(post);
 
     }
-
+   
     @Post('/post')
     async addPost(@Res() res, @Body() createPostDTO: CreatePostDTO) {
         const newPost = await this.blogService.addPost(createPostDTO);

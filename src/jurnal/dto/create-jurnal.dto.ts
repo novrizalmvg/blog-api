@@ -1,4 +1,14 @@
 export class CreateJurnalDTO {
-    readonly judul: string;
-    readonly isi: string;
+  readonly judul: string;
+  readonly pengantar: {
+    subjudul: String;
+    konten: String;
+  };
+  readonly bagianJurnal: [
+    {
+      judul: String;
+      isi: String;
+    },
+  ];
+  penutup: String;
 }
