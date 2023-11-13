@@ -29,4 +29,28 @@ export class ContactController {
             contact: newContact
         })
     }
+
+    @Put('/edit')
+    async editContact (
+        @Res() res,
+        @Query('contactlId', new ValidateObjectId()) contactId,
+        @Body() createContactDTO: CreateContactDTO
+    ) {
+        const editContact = await this.contactService.editContact(contactId, createContactDTO);
+        if (!editContact) throw new NotFoundException('contact does not exist');
+        return res.status(HttpStatus.OK).json({
+            messsage: 'Contact has been seccessfuly updated',
+            Contact: editContact
+        })
+    }
+
+    @Delete('/delete')
+    async deleteContact(@Res() res, @Query('contactID', new ValidateObjectId()) contactId) {
+        const deletedContact = await this.contactService.deleteContact(contactId);
+        if (!deletedContact) throw new NotFoundException('contact does not exist!');
+        return res.status(HttpStatus.OK).json({
+            message: 'contact hes been deleted',
+            contact: deletedContact
+        })
+    } 
 }

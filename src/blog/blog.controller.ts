@@ -29,4 +29,28 @@ export class BlogController {
             post: newPost
         })
     }
+
+    @Put('/edit')
+    async editPost (
+        @Res() res,
+        @Query('postId', new ValidateObjectId()) postId,
+        @Body() createPostDTO: CreatePostDTO
+    ) {
+        const editPost = await this.blogService.editPost(postId, createPostDTO);
+        if (!editPost) throw new NotFoundException('post does not exist');
+        return res.status(HttpStatus.OK).json({
+            messsage: 'Post has been seccessfuly updated',
+            post: editPost
+        })
+    }
+
+    @Delete('/delete')
+    async deletePost(@Res() res, @Query('postId', new ValidateObjectId()) postId) {
+        const deletedPost = await this.blogService.deletePost(postId);
+        if (!deletedPost) throw new NotFoundException('post does not exist!');
+        return res.status(HttpStatus.OK).json({
+            message: 'post hes been deleted',
+            post: deletedPost
+        })
+    } 
 }
