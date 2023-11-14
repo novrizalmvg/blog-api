@@ -6,6 +6,8 @@ import { BlogModule } from './blog/blog.module';
 import { ContactModule } from './contact/contact.module';
 import { JurnalModule } from './jurnal/jurnal.module';
 import { HomeModule } from './home/home.module';
+import { CommentModule } from './comment/comment.module';
+import { LikeModule } from './like/like.module';
 
 @Module({
   imports: [
@@ -14,6 +16,8 @@ import { HomeModule } from './home/home.module';
     ContactModule,
     JurnalModule,
     HomeModule,
+    CommentModule,
+    LikeModule,
   ],
   controllers: [AppController],
   providers: [AppService],
