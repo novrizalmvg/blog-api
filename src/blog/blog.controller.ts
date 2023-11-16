@@ -8,8 +8,8 @@ export class BlogController {
     constructor(private blogService: BlogService) { }
 
     @Get('posts')
-    async getPosts(@Res() res) {
-        const posts = await this.blogService.getPosts();
+    async getPosts(@Res() res, @Query('keyword') keyword?: string) {
+        const posts = await this.blogService.getPosts(keyword);
         return res.status(HttpStatus.OK).json(posts);
     }
 

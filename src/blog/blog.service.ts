@@ -9,8 +9,13 @@ export class BlogService {
 
     constructor(@InjectModel('Post') private readonly postModel: Model<Post>) { }
 
-    async getPosts(): Promise<Post[]> {
-        const posts = await this.postModel.find().exec();
+    async getPosts(keyword?: string): Promise<Post[]> {
+        let posts;
+        if (keyword) {
+            posts = await this.postModel.find({ title: { $regex: keyword, $options: "i" } }).exec();
+        } else {
+            posts = await this.postModel.find().exec();
+        }
         return posts;
     }
 

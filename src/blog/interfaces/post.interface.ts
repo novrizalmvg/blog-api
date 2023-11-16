@@ -1,4 +1,3 @@
-import { exec } from "child_process";
 import { Document } from "mongoose";
 
 export interface Post extends Document {
