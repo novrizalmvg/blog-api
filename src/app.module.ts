@@ -11,8 +11,8 @@ import { LikeModule } from './like/like.module';
 
 @Module({
   imports: [
-    // MongooseModule.forRoot('mongodb://localhost/nest-blog'),
-    MongooseModule.forRoot('mongodb+srv://novrizalmvg:Novrizal123@cluster0.8dwixav.mongodb.net/nest-blog?retryWrites=true&w=majority'),
+     MongooseModule.forRoot('mongodb://localhost/nest-blog'),
+    // MongooseModule.forRoot('mongodb+srv://novrizalmvg:Novrizal123@cluster0.8dwixav.mongodb.net/nest-blog?retryWrites=true&w=majority'),
     BlogModule,
     ContactModule,
     JurnalModule,
